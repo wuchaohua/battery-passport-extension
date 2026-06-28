@@ -1,0 +1,14 @@
+ server:
+   port: 9000
+ 
+ spring:
+   application:
+     name: battery-webhook-receiver
+ 
+ # Webhook 签名密钥（与平台配置一致）
+ webhook:
+   shared-secret: ${WEBHOOK_SECRET:changeit}
+ 
+ logging:
+   level:
+     com.customer.webhook: DEBUG

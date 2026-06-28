@@ -1,0 +1,30 @@
+ # 天合储能网关路由配置
+ spring:
+   cloud:
+     gateway:
+       routes:
+         - id: battery-service
+           uri: lb://battery-service
+           predicates:
+             - Path=/api/v1/passports/**
+           filters:
+             - name: RequestRateLimiter
+               args:
+                 redis-rate-limiter.replenishRate: 100
+                 redis-rate-limiter.burstCapacity: 200
+
+         - id: report-service
+           uri: lb://report-service
+           predicates:
+             - Path=/api/v1/reports/**
+
+         - id: auth-service
+           uri: lb://auth-service
+           predicates:
+             - Path=/api/v1/auth/**
+
+         # 天合 SSO CAS 回调路由
+         - id: cas-callback
+           uri: lb://auth-service
+           predicates:
+             - Path=/cas/**

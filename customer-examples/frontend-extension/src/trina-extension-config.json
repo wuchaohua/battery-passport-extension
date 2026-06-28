@@ -1,0 +1,17 @@
+ {
+   "extensionId": "trina-custom-dashboard-v1",
+   "name": "天合储能专属仪表盘",
+   "version": "1.0.0",
+   "provider": "Trina Storage",
+   "mountPoint": "passport.dashboard.top",
+   "componentUrl": "https://cdn.trina.com/battery/TrinaCustomDashboard.js",
+   "stylesUrl": "https://cdn.trina.com/battery/TrinaCustomDashboard.css",
+   "dependencies": {
+     "react": "^18.0.0",
+     "react-dom": "^18.0.0"
+   },
+   "permissions": [
+     "READ_PASSPORT_DETAIL",
+     "READ_TRINA_INTERNAL_API"
+   ]
+ }

@@ -1,0 +1,41 @@
+ # 天合储能私有化部署 —— application-override.yml
+ # 由平台运维在部署时注入，覆盖平台默认配置
+
+ battery:
+   enterprise:
+     code: trina
+     name: 天合储能
+   sso:
+     provider: trina
+     trina:
+       type: cas
+       server-url: https://cas.trinasolar.com
+       service-url: https://battery.trinasolar.com
+
+   plugin:
+     # 客户插件热加载目录（天合团队将编译好的 jar 放入此路径）
+     scan-path: /opt/battery/plugins/trina/
+     auto-reload: true
+
+   validation:
+     # 容量偏差阈值（百分比）
+     capacity-deviation-threshold: 2.0
+     # 校验异常时是否阻止入库
+     reject-on-violation: true
+
+   # 数据库配置
+ spring:
+   datasource:
+     url: jdbc:mysql://trina-db.internal:3306/battery_passport?useSSL=false
+     username: battery_app
+     password: ${DB_PASSWORD}
+
+   # 企业专属存储路径
+   file-storage:
+     base-path: /data/battery/files/trina/
+     type: local
+
+ # 天合专属主题色
+ custom-branding:
+   primary-color: '#003366'
+   logo-url: /assets/brand/trina/logo.png

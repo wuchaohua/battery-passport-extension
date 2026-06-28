@@ -1,0 +1,31 @@
+ # 托邦股份私有化部署 —— application-override.yml
+
+ battery:
+   enterprise:
+     code: tuobang
+     name: 托邦股份
+   sso:
+     provider: tuobang
+     tuobang:
+       type: oidc
+       issuer-uri: https://sso.tuobang.com/auth
+       client-id: battery-passport
+       client-secret: ${SSO_CLIENT_SECRET}
+
+   plugin:
+     scan-path: /opt/battery/plugins/tuobang/
+     auto-reload: true
+
+   import:
+     # 托邦ERP数据源类型，触发 TuobangErpDataTransformer
+     erp-source-types: tuobang_erp_v2,tuobang_erp_v3
+
+ spring:
+   datasource:
+     url: jdbc:mysql://tuobang-db.internal:3306/battery_passport?useSSL=false
+     username: battery_app
+     password: ${DB_PASSWORD}
+
+ custom-branding:
+   primary-color: '#c9362b'
+   logo-url: /assets/brand/tuobang/logo.png
